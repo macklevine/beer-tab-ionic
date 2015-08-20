@@ -34,6 +34,7 @@
     "angular-ui-router": "~0.2.15",
     "ng-table": "~0.8.3",
     "angular-jwt": "~0.0.9",
-    "ionic": "driftyco/ionic-bower#1.1.0"
+    "ionic": "driftyco/ionic-bower#1.1.0",
+    "cytoscape": "~2.4.6"
   }
 }
