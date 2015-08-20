@@ -35,6 +35,7 @@
     "ng-table": "~0.8.3",
     "angular-jwt": "~0.0.9",
     "ionic": "driftyco/ionic-bower#1.1.0",
-    "cytoscape": "~2.4.6"
+    "cytoscape": "~2.4.6",
+    "ng-file-upload": "~7.0.9"
   }
 }
