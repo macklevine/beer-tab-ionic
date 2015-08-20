@@ -50,7 +50,8 @@ module.exports = function(grunt) {
         },
         js_files: {
           files: {
-            'www/dist/src.min.js': ['www/dist/src.js']
+            'www/dist/src.min.js': ['www/dist/src.js'],
+            'www/dist/cytoscape.min.js': ['bower_components/cytoscape/dist/cytoscape.js']
           }
         }
     },
