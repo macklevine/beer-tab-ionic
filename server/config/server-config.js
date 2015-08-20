@@ -9,11 +9,11 @@ var app = express();
 
 // Bind middleware to app instance
 app.use(morgan('dev'));
-app.use(express.static('./client'));
+app.use(express.static('./www'));
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.sendfile('./client/index.html');
+  res.sendfile('./www/index.html');
 });
 
 app.get('/login', function (req, res) {

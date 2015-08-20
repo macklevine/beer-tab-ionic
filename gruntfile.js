@@ -5,13 +5,13 @@ module.exports = function(grunt) {
     jshint: {     // Validate .js file syntax
       all: [
         'server/**/*.js',   // server files
-        'client/**/*.js'    // client files
+        'www/**/*.js'    // client files
       ],
       options: {
         force: 'true',
         jshintrc: '.jshintrc',
         ignores: [
-          'client/dist/**/*.js'
+          'www/dist/**/*.js'
         ]
       }
     },
@@ -27,8 +27,8 @@ module.exports = function(grunt) {
     //-----------------------------------------------------
     concat: {     // Join .js files
       src: {
-        src: 'client/app/**/*.js',
-        dest: 'client/dist/src.js',
+        src: 'www/app/**/*.js',
+        dest: 'www/dist/src.js',
       },
       lib: {
         src: [
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
           'bower_components/angular-ui-router/release/angular-ui-router.min.js',
           'bower_components/bootstrap/dist/js/bootstrap.min.js'
         ],
-        dest: 'client/dist/lib.min.js',
+        dest: 'www/dist/lib.min.js',
       }
     },
     //-----------------------------------------------------
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
         },
         js_files: {
           files: {
-            'client/dist/src.min.js': ['client/dist/src.js']
+            'www/dist/src.min.js': ['www/dist/src.js']
           }
         }
     },
@@ -61,16 +61,16 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'bower_components/bootstrap/dist/css/',
           src: ['bootstrap.css', '!*.min.css'],
-          dest: 'client/dist/',
+          dest: 'www/dist/',
           ext: '.min.css'
         }]
       },
       stylesheet: {
         files: [{
           expand: true,
-          cwd: 'client/styles/',
+          cwd: 'www/styles/',
           src: ['styles.css', '!*.min.css'],
-          dest: 'client/dist/',
+          dest: 'www/dist/',
           ext: '.min.css'
         }]
       },
@@ -79,7 +79,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'bower_components/ng-table/dist/',
           src: ['ng-table.css', '!*.min.css'],
-          dest: 'client/dist/',
+          dest: 'www/dist/',
           ext: '.min.css'
         }]
       }
@@ -93,7 +93,7 @@ module.exports = function(grunt) {
     //-----------------------------------------------------
     shell: {
       delsrc: {
-        command: 'rm ./client/dist/src.js'
+        command: 'rm ./www/dist/src.js'
       }
     },
     //-----------------------------------------------------
@@ -101,12 +101,12 @@ module.exports = function(grunt) {
       scripts: {
         files: [
           'server/**/*.js',   // server files
-          'client/**/*.js'    // client files
+          'www/**/*.js'    // www files
         ],
         tasks: ['build']
       },
       css: {
-        files: 'client/styles/*.css',
+        files: 'www/styles/*.css',
         tasks: ['cssmin']
       }
     }
