@@ -1,18 +1,62 @@
 {
-  "name": "beer-ionic",
-  "version": "1.0.0",
-  "description": "beer-ionic: An Ionic project",
-  "dependencies": {
+  "name": "beer-tab",
+  "version": "0.0.1",
+  "description": "beer as social currency",
+  "main": "server/server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ViridescentGrizzly/beer-tab.git"
+  },
+  "license": "MIT",
+  "author": "Viridescent Grizzly",
+  "contributors": [
+    {
+      "name": "Michael Kurrels",
+      "email": "mjkurrels@gmail.com"
+    },
+    {
+      "name": "Nate Meier",
+      "email": "iemanatemire@gmail.com"
+    },
+    {
+      "name": "Andrés Viesca",
+      "email": "viestat@icloud.com"
+    },
+    {
+      "name": "Steven Wu",
+      "email": "wucommasteven@gmail.com"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-cssmin": "^0.13.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-test": "^0.12.7",
+    "grunt-nodemon": "^0.4.0",
+    "grunt-shell": "^1.1.2",
+    "mocha": "^2.2.5",
+    "bower": "^1.3.3",
+    "gulp-util": "^2.2.14",
+    "shelljs": "^0.3.0",
     "gulp": "^3.5.6",
     "gulp-sass": "^1.3.3",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0"
   },
-  "devDependencies": {
-    "bower": "^1.3.3",
-    "gulp-util": "^2.2.14",
-    "shelljs": "^0.3.0"
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^2.9.34",
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "jwt-simple": "^0.3.0",
+    "mongodb": "^2.0.40",
+    "mongoose": "^4.1.2",
+    "morgan": "^1.6.1",
+    "request": "^2.60.0"
   },
   "cordovaPlugins": [
     "cordova-plugin-device",

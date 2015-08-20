@@ -1,7 +1,39 @@
 {
-  "name": "HelloIonic",
-  "private": "true",
-  "devDependencies": {
+  "name": "beer-tab",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ViridescentGrizzly/beer-tab",
+  "authors": [
+    {
+      "name": "Michael Kurrels",
+      "email": "mjkurrels@gmail.com"
+    },
+    {
+      "name": "Nate Meier",
+      "email": "iemanatemire@gmail.com"
+    },
+    {
+      "name": "Andrés Viesca",
+      "email": "viestat@icloud.com"
+    },
+    {
+      "name": "Steven Wu",
+      "email": "wucommasteven@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "bootstrap": "~3.3.5",
+    "angular-ui-router": "~0.2.15",
+    "ng-table": "~0.8.3",
+    "angular-jwt": "~0.0.9",
     "ionic": "driftyco/ionic-bower#1.1.0"
   }
 }
