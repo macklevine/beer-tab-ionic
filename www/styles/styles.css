@@ -26,12 +26,6 @@ input {
 }
 
 #cy {
- /* height: 50%;
-  width: 50%;
-  position: absolute;
-  left: 0;
-  top: 0;*/
-  /*z-index: 1000;*/
   position: absolute;
   top: 60px;
   left: 60px;

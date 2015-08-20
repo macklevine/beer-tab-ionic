@@ -15,7 +15,7 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
   // $scope.network =  argle || $scope.decodedJwt.network;
   // Pull username from token to display on main page
   $scope.user = $scope.decodedJwt.username;
-  console.log('$scope.user', $scope.user);
+  // console.log('$scope.user', $scope.user);
 
 
   //this is used to show the add friend button, and hide the
@@ -32,7 +32,7 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
       if(AuthService.isAuth()) {
         beerPmt.newIOU(user)
         .then(function(derp){
-          console.log(derp); 
+          // console.log(derp); 
           $scope.network = util.toArr(derp.network);
           
         });
@@ -45,7 +45,7 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
       navigator.geolocation.watchPosition(function(position){
         var lat = position.coords.latitude;
         var lon = position.coords.longitude;
-        console.log('check your server', lat, lon);
+        // console.log('check your server', lat, lon);
         location.locPost(user, [lat, lon]);
       });
     }else{
@@ -63,6 +63,12 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
   $scope.getProfile = function(username){
     return 'assets/profiles/' + profile.profile(username);
   }
+
+  $scope.$on('clickedUser', function (event, args){
+    // console.log("event ------>", event);
+    // console.log("args ------->", args);
+    $scope.sendBeer(args);
+  });
 
 });
 
@@ -105,7 +111,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
         var unwatch = scope.$watchCollection('network', function(newVal, oldVal){
           if(newVal){
             init();
-            unwatch();
+            // unwatch();
           }
         });
         //start cytoscape visualization
@@ -122,7 +128,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                 }
               });
               for(var i=0; i< user.network.length; i++){
-                console.log("network: ",user.network[i]);
+                // console.log("network: ",user.network[i]);
                 g.nodes.push({
                   data:{
                     id: user.network[i].username,
@@ -147,7 +153,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                 .selector('node')
                   .css({
                     // 'content': 'data(name)',
-                    'text-valign': 'center',
+                    'text-align': 'center',
                     'color': 'black',
                     'height': 100,
                     'width': 100,
@@ -216,7 +222,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                     'background-image': 'assets/profiles/' + element._private.data.id + '.jpg'
                   })
                   if(element._private.data.beerDebt > 0){
-                    console.log(element._private.data);
+                    // console.log(element._private.data);
                     element.addClass('owed');
                   }else if(element._private.data.beerDebt <= 0){
                     element.addClass('owe');
@@ -227,29 +233,13 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
             })
            cy.on('click', 'node', function(){
             var nodes = this;
-            var tapped = nodes;
-            // console.log(nodes);
+            scope.$emit('clickedUser', nodes._private.data.id);
+            // var tapped = nodes;
+            // console.log(nodes._private.data.id);
    /*         tapped.css({
             'display': 'none'
            })*/
-           console.log(nodes.connectedEdges().targets()[0]._private.data);
-            /*var Beer = [];
-            for(;;){
-              var connectedEdges = nodes.connectedEdges(function(){
-                return !this.target().anySame( nodes );
-              });
-              
-              var connectedNodes = connectedEdges.targets();
-              
-              Array.prototype.push.apply( Beer, connectedNodes );
-              
-              nodes = connectedNodes;
-              // console.log("NODES------->",nodes);
-              if( nodes.empty() ){ break; }
-            }
-            console.log("BEER --------->",Beer);*/
-
-
+           // console.log(nodes.connectedEdges().targets()[0]._private.data);
            });
           })  
         }
