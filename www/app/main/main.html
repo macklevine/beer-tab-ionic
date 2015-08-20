@@ -1,0 +1,28 @@
+
+<div class='container' data-ng-controller="MainCtrl"> 
+
+  <h1> Hello, {{user}}!</h1>
+
+  <table ng-table class="table">
+      <tr ng-repeat="user in network | orderBy:'username'">
+          <td data-title="''" class="profile-col"><div class='profilepic' ng-style="{ 'background-image': 'url(' + getProfile(user.username) + ')' }"></div></td>
+          <td class="username-col" data-title="'Username'">{{user.username}}</td>
+          <td class="beer-tab-col" data-title="'Tab'"><div ng-class="user.tab > 0 ? 'greenbeer' : 'redbeer'">{{user.tab}}</div></td>
+          <td class="pay-btn-col"> 
+            <button class="pay-btn" ng-hide="user.tab <= 0" ng-click="sendBeer(user.username)">Got Beer</button>
+            <button class="pay-btn" ng-hide="user.tab > 0" ng-click="sendBeer(user.username)">Send Beer</button>
+         </td>
+      </tr>
+  </table>
+
+  <div class="login">
+  <button class="add-friend-btn" ng-hide="clicked" ng-click="clicked = true; toUser = '';">Add New Friend</button>
+    <form ng-submit="sendBeer(toUser)" name="send-beer" novalidate>
+      <ul class="ul-list" ng-show="clicked">
+        <li class='center'>
+          <div><input type="text" class="send-beer input" placeholder="I owe a beer to..." ng-model="toUser" ng-minlength="3" ng-maxlength="20" required><span class="icon"><i class="fa fa-user"></i></span></li>
+        <li><input type="submit" value="SEND BEER" class="btn btn2" ng-disabled="login.$invalid" disabled="disabled" ng-click="clicked = false;"></li>
+      </ul>
+    </form>
+  </div>
+</div>
