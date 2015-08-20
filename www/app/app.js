@@ -5,9 +5,14 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/login');
 
   $stateProvider
-    .state('main', {
+    /*.state('main', {
       url: '/main',
       templateUrl: 'app/main/main.html',
+      controller: 'MainCtrl'
+    })*/
+    .state('main', {
+      url: '/main',
+      templateUrl: 'app/main/graph.html',
       controller: 'MainCtrl'
     })
     .state('login', {
