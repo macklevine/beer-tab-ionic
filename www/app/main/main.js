@@ -13,6 +13,11 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
         $scope.network = util.toArr(derp);
       })
   }
+  $scope.printFriend = function(){
+    console.log($('.friend-input').val());
+    $(".input-list").toggleClass('hidden');
+
+  }
  /* getTable.getTable($scope.user)
     .then(function (derp) {
       $scope.network = util.toArr(derp);
@@ -58,7 +63,18 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
     }else{
       console.log('you goofed');
     }
+
+  }
+
+  $scope.getLoc = function (user, callback) {
+      location.locGet(user)
+      .then(function(derp){
+        $scope.marker = derp;
+        callback();
+      });
   };
+
+
 
   $scope.sendLoc($scope.user);
 
@@ -155,7 +171,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                   .css({
                     'content': 'data(name)',
                     'text-align': 'center',
-                    'color': 'black',
+                    // 'color': 'black',
                     'height': 100,
                     'width': 100,
                     'background-fit': 'cover',
@@ -189,29 +205,28 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                   }),
               
               elements: createGraph(scope),
-                /*layout: {
+               /* layout: {
                   name: 'cose',
                   animate: true,
                   refresh: 8,
                   padding: 50,
                   animationDuration: 500
-                  // debug: true
-                }
-               /* layout: {
+                }*/
+               layout: {
                   name: 'grid',
                   padding: 50,
                   avoidOverlap: true,
                   animate: true,
                   animationDuration: 500
-                }*/
-             /*   layout: {
+                }
+                /*layout: {
                   name: 'random',
                   fit: true,
                   padding: 30,
                   animate: true,
                   animationDuration: 500
                 }*/
-                /*layout: {
+               /* layout: {
                   name: "circle",
                   fit: true,
                   padding: 30,
@@ -246,6 +261,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
             if(nodes.connectedEdges().targets()[0]._private.data.id === nodes._private.data.id){
               return;
             }
+            $('.message').text("Send " + nodes._private.data.id + " a beer?").toggleClass('hidden');
             if(clickedOnce === true){
               clickedOnce = false;
               cy.elements().forEach(function(element){

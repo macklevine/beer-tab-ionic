@@ -24,6 +24,11 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
       url: '/maps',
       templateUrl: 'app/map/map.html',
       controller: 'MapsCtrl'
+    })
+    .state('friend', {
+      url: '/friend',
+      templateUrl: 'app/main/friend.html',
+      controller: 'MainCtrl'
     });
 
   $httpProvider.interceptors.push('AttachTokens');
