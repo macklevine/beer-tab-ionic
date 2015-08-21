@@ -58,39 +58,9 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
     }else{
       console.log('you goofed');
     }
-  }
-
-  $scope.getLoc = function (user, callback) {
-      location.locGet(user)
-      .then(function(derp){
-        $scope.marker = derp;
-        callback();
-      });
-  };
-
-  $scope.GenerateMapMarkers = function () {
-    var myLatlng = new google.maps.LatLng(37.7837667, -122.4092151);
-    var mapOptions = {
-      zoom: 11,
-      center: myLatlng
-    }
-    console.log($scope.marker)
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-    for(var k = 0; k < $scope.marker.length; k++){
-      console.log('VALUE', $scope.marker[k]);
-      var latLong = new google.maps.LatLng($scope.marker[k].lat, $scope.marker[k].long);
-      var marks = new google.maps.Marker({
-        position: latLong,
-        title: $scope.marker[k].name,
-      });
-
-      marks.setMap(map);
-    }
   };
 
   $scope.sendLoc($scope.user);
-  $scope.getLoc($scope.user, $scope.GenerateMapMarkers);
 
   $scope.getProfile = function(username){
     return 'assets/profiles/' + profile.profile(username);
