@@ -111,7 +111,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
         var unwatch = scope.$watchCollection('network', function(newVal, oldVal){
           if(newVal){
             init();
-            // unwatch();
+            unwatch();
           }
         });
         //start cytoscape visualization
@@ -163,6 +163,10 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                     'border-opacity': 0.5
                     // 'background-image': 'assets/beerMug.png'
                   })
+                .selector('.hidden')
+                  .css({
+                    'display': 'none'
+                  })
                 .selector('.owed')
                   .css({
                     'border-color': 'red'
@@ -184,20 +188,20 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                   }),
               
               elements: createGraph(scope),
-                layout: {
+              /*  layout: {
                   name: 'cose',
-                  animate: true,
+                  animate: false,
                   refresh: 8,
                   padding: 50
                   // debug: true
-                }
-                /*layout: {
+                }*/
+                layout: {
                   name: 'grid',
                   padding: 50,
                   avoidOverlap: true,
                   animate: true,
                   animationDuration: 500
-                }*/
+                }
              /*   layout: {
                   name: 'random',
                   fit: true,
@@ -234,12 +238,22 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
            cy.on('click', 'node', function(){
             var nodes = this;
             scope.$emit('clickedUser', nodes._private.data.id);
-            // var tapped = nodes;
-            // console.log(nodes._private.data.id);
-   /*         tapped.css({
-            'display': 'none'
-           })*/
-           // console.log(nodes.connectedEdges().targets()[0]._private.data);
+            if(nodes.connectedEdges().targets()[0]._private.data.id === nodes._private.data.id){
+              return;
+            }else{
+              console.log(nodes._private.data.beerDebt);
+              cy.elements().forEach(function(element){
+                if(element._private.data.id !== nodes._private.data.id && element._private.data.id !== nodes.connectedEdges().targets()[0]._private.data.id) {
+                  element.toggleClass('hidden');
+                /*if(element._private.data.beerDebt > 0){
+                  // console.log(element._private.data);
+                  element.addClass('owed');
+                }else if(element._private.data.beerDebt <= 0){
+                  element.addClass('owe');
+                }*/
+                }
+              })
+            }
            });
           })  
         }
