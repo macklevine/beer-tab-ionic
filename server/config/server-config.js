@@ -34,10 +34,10 @@ app.post('/profile', handler.profile);
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/www/assets/profiles')
+    cb(null, 'www')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname)
+    cb(null, file.originalname) //this works.
   }
 });
 
