@@ -13,6 +13,11 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
         $scope.network = util.toArr(derp);
       })
   }
+  $scope.printFriend = function(){
+    console.log($('.friend-input').val());
+    $(".input-list").toggleClass('hidden');
+
+  }
  /* getTable.getTable($scope.user)
     .then(function (derp) {
       $scope.network = util.toArr(derp);
@@ -253,7 +258,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
             if(nodes.connectedEdges().targets()[0]._private.data.id === nodes._private.data.id){
               return;
             }
-            $('.footer').text("Send " + nodes._private.data.id + " a beer?").toggleClass('hidden');
+            $('.message').text("Send " + nodes._private.data.id + " a beer?").toggleClass('hidden');
             if(clickedOnce === true){
               clickedOnce = false;
               cy.elements().forEach(function(element){
