@@ -1,4 +1,4 @@
-var app = angular.module('app', ['beer-tab.auth', 'beer-tab.main', 'beer-tab.services', 'ui.router']);
+var app = angular.module('app', ['beer-tab.auth', 'beer-tab.main', 'beer-tab.services', 'beer-tab.maps', 'ui.router']);
 
 app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
 
@@ -19,6 +19,11 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
       url: '/login',
       templateUrl: 'app/auth/login.html',
       controller: 'AuthCtrl'
+    })
+    .state('maps', {
+      url: '/maps',
+      templateUrl: 'app/map/map.html',
+      controller: 'MapsCtrl'
     });
 
   $httpProvider.interceptors.push('AttachTokens');

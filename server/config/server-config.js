@@ -20,6 +20,10 @@ app.get('/login', function (req, res) {
   res.send();
 });
 
+app.get('/maps', function (req, res) {
+	res.send();
+});
+
 app.post('/location', handler.getLoc);
 
 app.post('/table', handler.getTable);
