@@ -25,6 +25,7 @@ input {
   list-style: none
 }
 
+<<<<<<< HEAD
 /*section {
   position: absolute;
   top: 100px;
@@ -46,6 +47,8 @@ input[type="text"]:focus {
 }*/
 /*end input css*/
 
+=======
+>>>>>>> bbc77f44be24df3198e6d1b0e2e8a14b08af22e9
 .footer {
   position: fixed;
   text-align: center;
