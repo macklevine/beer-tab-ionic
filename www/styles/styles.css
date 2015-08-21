@@ -34,7 +34,17 @@ input {
   /*background: white;*/
 }
 
-.friends {
+/*#friend{
+  display: inline-block;
+  position: absolute;
+  float: left;
+  bottom: 0;
+  left: 0;
+  height: 10%;
+  width: 100%; 
+}
+*/
+.friends, .message {
   display: inline-block;
   text-align: center;
   float: left;
@@ -48,10 +58,11 @@ input {
 .search-friend {
   display: inline-block;
   float: left;
+  padding: 5px;
 }
-.message {
+/*.message {
   display: inline-block;
-}
+}*/
 
 #cy {
   display: inline-block;
@@ -468,9 +479,12 @@ table tr:hover td {
 }
 
 #friend{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 10%;
-  width: 100%; 
+  display: inline-block;
+  float: left;
+  text-align: center;
+  padding: 5px;
+  background: #333;
+  color: white;
+  border-radius: 5px;
+  margin-left: 1em;
 }
