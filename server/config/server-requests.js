@@ -1,9 +1,6 @@
 var bodyParser = require('body-parser');
 var request = require('request');
 var jwt = require('jwt-simple');
-var path = require('path');
-var fs = require('fs');
-var multer = require('multer');
 
 var User = require('./db-config.js');
 
@@ -248,16 +245,26 @@ exports.profile = function(req, res){
     })
 };
 
-exports.upload = function(req, res){
-  console.log(req.body + "has all our good stuff in it");
-  console.log(req.files);
-  res.status(201).end();
+// exports.upload = function(req, res){
+//   console.log(req.body + "has all our good stuff in it");
+//   console.log(req.files);
+//   res.status(201).end();
 
-  // var targetPath = path.resolve('../')
-  // //need to make sure the above path puts our file in 
-  // fs.rename(req.files.file.path, targetPath, function(err){
-  //   if (err) throw err;
-  //   console.log("upload completed");
-  // })
+//   // var targetPath = path.resolve('../')
+//   // //need to make sure the above path puts our file in 
+//   // fs.rename(req.files.file.path, targetPath, function(err){
+//   //   if (err) throw err;
+//   //   console.log("upload completed");
+//   // })
 
-}
+// }
+
+// app.post('/',[ multer({ dest: './uploads/'}), function(req, res){
+//     console.log(req.body) // form fields
+//     console.log(req.files) // form files
+//     res.status(204).end()
+// }]);
+
+
+
+
