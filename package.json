@@ -27,6 +27,10 @@
       "email": "wucommasteven@gmail.com"
     }
   ],
+  "scripts": {
+    "start": "node server/server.js",
+    "postinstall": "bash ./post_install.sh" 
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^2.9.34",
