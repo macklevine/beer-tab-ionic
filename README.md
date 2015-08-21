@@ -54,7 +54,7 @@ that they owe them another beer.
 ### bower_components
 - angular  ~1.4.3
 - bootstrap  ~3.3.5
-- angular-ui-router  ~0.2.15
+- angular-ui-router  ~0.2.13
 - ng-table  ~0.8.3
 - angular-jwt  ~0.0.9
 
