@@ -43,14 +43,16 @@ auth.controller('AuthCtrl', function ($scope, Upload, $rootScope, $window, $loca
     
     //perform logic here; check for presence of $scope.user.profile...
     if ($scope.user.profile){
+      console.log($scope.user.profile + " is the value for $scope.user.profile...")
       Upload.upload({
-        url: '/profile/upload', //TODO: change to something that makes more sense.
+        url: '/profileupload', //TODO: change to something that makes more sense.
         file: $scope.user.profile,
         fileName: $scope.user.username + ".jpg"
       }).then(function(){
         signUserUp();
       });
     } else {
+      console.log($scope.user.profile + " is the value for $scope.user.profile...")
       signUserUp();
     }
 
