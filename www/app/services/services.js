@@ -105,7 +105,16 @@ angular.module('beer-tab.services', [])
       data: {user: user}
     })
     .then(function (resp) {
-      // console.log(resp.data);
+      var newArr = []
+      var newObj;
+      for(var i in resp.data){
+        newObj = {};
+        newObj.name = i;
+        newObj.lat = resp.data[i][0];
+        newObj.long = resp.data[i][1];
+        newArr.push(newObj);
+      }
+      return newArr;
     });
   }
   return {locPost: locPost, locGet: locGet};

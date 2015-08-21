@@ -1,7 +1,7 @@
 var main = angular.module('beer-tab.main', ['beer-tab.services', 'angular-jwt', 'ngTable']);
 
 
-main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthService, getTable, util, location, profile) {
+main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthService, getTable, util, location, profile, $timeout) {
   // Retrieve token from localStorage
   $scope.jwt = $window.localStorage.getItem('com.beer-tab');
   // Decode token (this uses angular-jwt. notice jwtHelper)
@@ -21,6 +21,7 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
   //this is used to show the add friend button, and hide the
   // new friend form
   $scope.clicked = false;
+  $scope.marker;
 
 
   //This function sennds a request to the server, it returns 
@@ -53,12 +54,37 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
     }
   }
 
-  $scope.getLoc = function (user) {
-    location.locGet(user);
-  }
+  $scope.getLoc = function (user, callback) {
+      location.locGet(user)
+      .then(function(derp){
+        $scope.marker = derp;
+        callback();
+      });
+  };
+
+  $scope.GenerateMapMarkers = function () {
+    var myLatlng = new google.maps.LatLng(37.7837667, -122.4092151);
+    var mapOptions = {
+      zoom: 11,
+      center: myLatlng
+    }
+    console.log($scope.marker)
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    for(var k = 0; k < $scope.marker.length; k++){
+      console.log('VALUE', $scope.marker[k]);
+      var latLong = new google.maps.LatLng($scope.marker[k].lat, $scope.marker[k].long);
+      var marks = new google.maps.Marker({
+        position: latLong,
+        title: $scope.marker[k].name,
+      });
+
+      marks.setMap(map);
+    }
+  };
 
   $scope.sendLoc($scope.user);
-  $scope.getLoc($scope.user);
+  $scope.getLoc($scope.user, $scope.GenerateMapMarkers);
 
   $scope.getProfile = function(username){
     return 'assets/profiles/' + profile.profile(username);
@@ -184,20 +210,20 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                   }),
               
               elements: createGraph(scope),
-                layout: {
+                /*layout: {
                   name: 'cose',
                   animate: true,
                   refresh: 8,
                   padding: 50
                   // debug: true
-                }
-                /*layout: {
+                }*/
+                layout: {
                   name: 'grid',
                   padding: 50,
                   avoidOverlap: true,
                   animate: true,
                   animationDuration: 500
-                }*/
+                }
              /*   layout: {
                   name: 'random',
                   fit: true,

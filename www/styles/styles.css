@@ -27,12 +27,12 @@ input {
 
 #cy {
   position: absolute;
-  top: 60px;
-  left: 60px;
+  top: 50px;
+  left: 10%;
   margin-top: -50px;
   margin-left: -50px;
-  width: 90%;
-  height: 90%;
+  width: 75%;
+  height: 75%;
 }
 
 #login-form {
@@ -417,5 +417,13 @@ table tr:hover td {
 
 .profile-col {
   width: 40px;
+}
+
+#map {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 25%;
+  width: 100%;
 }
 
