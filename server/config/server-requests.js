@@ -3,6 +3,7 @@ var request = require('request');
 var jwt = require('jwt-simple');
 var path = require('path');
 var fs = require('fs');
+var multer = require('multer');
 
 var User = require('./db-config.js');
 
