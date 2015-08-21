@@ -3,6 +3,7 @@ var handler = require('./server-requests.js');
 var bodyParser = require('body-parser');
 var express = require('express');
 var morgan = require('morgan');
+var cors = require('cors');
 
 // Initialize express process
 var app = express();
@@ -11,12 +12,14 @@ var app = express();
 app.use(morgan('dev'));
 app.use(express.static('./www'));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', function (req, res) {
   res.sendfile('./www/index.html');
 });
 
 app.get('/login', function (req, res) {
+
   res.send();
 });
 
