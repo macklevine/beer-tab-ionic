@@ -1,6 +1,8 @@
 var bodyParser = require('body-parser');
 var request = require('request');
 var jwt = require('jwt-simple');
+var path = require('path');
+var fs = require('fs');
 
 var User = require('./db-config.js');
 
@@ -242,4 +244,9 @@ exports.profile = function(req, res){
       res.status(201).send(user.profile);
       res.end();
     })
+};
+
+exports.upload = function(req, res){
+  console.log(req.body + "has all our good stuff in it");
+  res.status(201).end();
 }
