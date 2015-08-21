@@ -74,8 +74,6 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
       });
   };
 
-
-
   $scope.sendLoc($scope.user);
 
   $scope.getProfile = function(username){
@@ -261,7 +259,12 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
             if(nodes.connectedEdges().targets()[0]._private.data.id === nodes._private.data.id){
               return;
             }
+<<<<<<< HEAD
             $('.message').text("Send " + nodes._private.data.id + " a beer?").toggleClass('hidden');
+=======
+
+            $('.footer').text("Send " + nodes._private.data.id + " a beer?").toggleClass('hidden');
+>>>>>>> 73292922926871337339897c08b3a157fc9fab79
             if(clickedOnce === true){
               clickedOnce = false;
               cy.elements().forEach(function(element){
