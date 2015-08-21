@@ -30,3 +30,7 @@ bower_components/
 platforms/
 resources/
 config.xml
+
+# Heroku stuff
+.env
+

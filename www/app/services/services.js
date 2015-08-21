@@ -5,7 +5,7 @@ angular.module('beer-tab.services', [])
  
   authService.login = function (credentials) {
     return $http
-      .post('/login', credentials)
+      .post('https://salty-temple-6119.herokuapp.com/login', credentials)
       .then(function (resp) {
         return resp.data.token;
       });
@@ -14,7 +14,7 @@ angular.module('beer-tab.services', [])
   authService.signup = function(credentials) {
     console.log('cred:', credentials);
     return $http
-      .post('/signup', credentials)
+      .post('https://salty-temple-6119.herokuapp.com/signup', credentials)
       .then(function (resp) {
         return resp.data.token;
       });
@@ -38,7 +38,7 @@ angular.module('beer-tab.services', [])
   var getTable = function (user) {
     return $http({
       method: 'POST',
-      url: '/table',
+      url: 'https://salty-temple-6119.herokuapp.com/table',
       data: {user: user}
     })
     .then(function (resp) {
@@ -60,7 +60,7 @@ angular.module('beer-tab.services', [])
   var newIOU = function (user) {
     return $http({
       method: 'POST',
-      url: '/tabs',
+      url: 'https://salty-temple-6119.herokuapp.com/tabs',
       data: {token: $window.localStorage.getItem('com.beer-tab'), user: user}
     })
     .then(function (resp) {
@@ -94,14 +94,14 @@ angular.module('beer-tab.services', [])
   var locPost = function (user, loc) {
     return $http({
       method: 'POST',
-      url: '/location',
+      url: 'https://salty-temple-6119.herokuapp.com/location',
       data: {lat: loc[0], lon: loc[1], user: user}
     });
   };
   var locGet = function(user){
     return $http({
       method: 'POST',
-      url: '/location',
+      url: 'https://salty-temple-6119.herokuapp.com/location',
       data: {user: user}
     })
     .then(function (resp) {
@@ -127,7 +127,7 @@ angular.module('beer-tab.services', [])
       searchedArr.push(username);
       $http({
         method: 'POST',
-        url: '/profile',
+        url: 'https://salty-temple-6119.herokuapp.com/profile',
         data: {username: username}
       })
       .then(function(resp){
