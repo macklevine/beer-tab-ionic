@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser');
 var request = require('request');
 var jwt = require('jwt-simple');
+var fs = require('fs');
 
 var User = require('./db-config.js');
 
@@ -244,6 +245,20 @@ exports.profile = function(req, res){
       res.end();
     })
 };
+
+exports.picExists = function(req, res){
+  var username = req.body.username;
+  fs.exists('www/assets/profiles/' + username + '.jpg', function(exists){
+    if (exists){
+      res.json({verdict: "profile picture exists"});
+      console.log("error: profile picture already exists");
+      res.status(418).end();
+    } else {
+      res.json({verdict: "good"});
+      res.status(201).end();
+    }
+  });
+}
 
 // exports.upload = function(req, res){
 //   console.log(req.body + "has all our good stuff in it");
