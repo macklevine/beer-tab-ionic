@@ -19,6 +19,11 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
       url: '/login',
       templateUrl: 'app/auth/login.html',
       controller: 'AuthCtrl'
+    })
+    .state('friend', {
+      url: '/friend',
+      templateUrl: 'app/main/friend.html',
+      controller: 'MainCtrl'
     });
 
   $httpProvider.interceptors.push('AttachTokens');
