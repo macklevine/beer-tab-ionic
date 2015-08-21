@@ -38,6 +38,7 @@ module.exports = function(grunt) {
           'bower_components/ng-table/dist/ng-table.min.js',
           'bower_components/angular-jwt/dist/angular-jwt.min.js',
           'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+          'bower_components/ng-file-upload/ng-file-upload.js',
           'bower_components/bootstrap/dist/js/bootstrap.min.js'
         ],
         dest: 'www/dist/lib.min.js',
