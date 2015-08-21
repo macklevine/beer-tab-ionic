@@ -7,10 +7,16 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
   // Decode token (this uses angular-jwt. notice jwtHelper)
   $scope.decodedJwt = $scope.jwt && jwtHelper.decodeToken($scope.jwt);
   // Object used to contain user's beer network
-  getTable.getTable($scope.user)
+  $scope.getTable = function(){
+    getTable.getTable($scope.user)
+      .then(function(derp){
+        $scope.network = util.toArr(derp);
+      })
+  }
+ /* getTable.getTable($scope.user)
     .then(function (derp) {
       $scope.network = util.toArr(derp);
-    });
+    });*/
 
   // $scope.network =  argle || $scope.decodedJwt.network;
   // Pull username from token to display on main page
@@ -90,11 +96,11 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
     return 'assets/profiles/' + profile.profile(username);
   }
 
-  $scope.$on('clickedUser', function (event, args){
+  /*$scope.$on('clickedUser', function (event, args){
     // console.log("event ------>", event);
     // console.log("args ------->", args);
     $scope.sendBeer(args);
-  });
+  });*/
 
 });
 
@@ -141,7 +147,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
           }
         });
         //start cytoscape visualization
-        function init(){
+        var init = function(){
           cytoService.cytoscape().then(function(cytoscape){
             var createGraph = function(user){
               var g = {};
@@ -154,11 +160,10 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                 }
               });
               for(var i=0; i< user.network.length; i++){
-                // console.log("network: ",user.network[i]);
                 g.nodes.push({
                   data:{
                     id: user.network[i].username,
-                    name: user.network[i].username + ":" + user.network[i].tab,
+                    name: user.network[i].tab,
                     beerDebt: user.network[i].tab
                   }
                 });
@@ -178,7 +183,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
               style: cytoscape.stylesheet()
                 .selector('node')
                   .css({
-                    // 'content': 'data(name)',
+                    'content': 'data(name)',
                     'text-align': 'center',
                     'color': 'black',
                     'height': 100,
@@ -188,6 +193,10 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                     'border-width': 9,
                     'border-opacity': 0.5
                     // 'background-image': 'assets/beerMug.png'
+                  })
+                .selector('.hidden')
+                  .css({
+                    'display': 'none'
                   })
                 .selector('.owed')
                   .css({
@@ -202,7 +211,7 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                   .css({
                     'display': 'none',
                     'width': 6,
-                    'target-arrow-shape': 'triangle',
+                    // 'target-arrow-shape': 'triangle',
                     'line-color': '#162FCE',
                     'target-arrow-color': '#162FCE',
                     'content': 'data(beerStatus)',
@@ -214,16 +223,17 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
                   name: 'cose',
                   animate: true,
                   refresh: 8,
-                  padding: 50
+                  padding: 50,
+                  animationDuration: 500
                   // debug: true
-                }*/
-                layout: {
+                }
+               /* layout: {
                   name: 'grid',
                   padding: 50,
                   avoidOverlap: true,
                   animate: true,
                   animationDuration: 500
-                }
+                }*/
              /*   layout: {
                   name: 'random',
                   fit: true,
@@ -241,32 +251,44 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
             }); // cy init
 
             cy.ready(function(){
+              console.log(scope.user);
               var nodes = this;
               nodes.elements().forEach(function(element){
-                if(element._private.group === "nodes"  /*&& element._private.data.beerDebt !== undefined*/){
+                console.log(element._private.group);
+                if(element._private.group === "nodes"){
                   element.css({
                     'background-image': 'assets/profiles/' + element._private.data.id + '.jpg'
                   })
                   if(element._private.data.beerDebt > 0){
-                    // console.log(element._private.data);
                     element.addClass('owed');
                   }else if(element._private.data.beerDebt <= 0){
                     element.addClass('owe');
                   }
                 }
-                // stuff.toggleClass('owe');
               })
             })
-           cy.on('click', 'node', function(){
+            /*TAP FUNCTION*/
+          var clickedOnce = true;
+          cy.on('tap', 'node', function(){
             var nodes = this;
-            scope.$emit('clickedUser', nodes._private.data.id);
-            // var tapped = nodes;
-            // console.log(nodes._private.data.id);
-   /*         tapped.css({
-            'display': 'none'
-           })*/
-           // console.log(nodes.connectedEdges().targets()[0]._private.data);
+            // scope.sendBeer(nodes._private.data.id);
+            // scope.$emit('clickedUser', nodes._private.data.id);
+            if(nodes.connectedEdges().targets()[0]._private.data.id === nodes._private.data.id){
+              return;
+            }
+            if(clickedOnce === true){
+              clickedOnce = false;
+              cy.elements().forEach(function(element){
+                if(element._private.data.id !== nodes._private.data.id && element._private.data.id !== nodes.connectedEdges().targets()[0]._private.data.id) {
+                  element.toggleClass('hidden');
+                }
+              })
+            }else{
+              scope.sendBeer(nodes._private.data.id);
+              clickedOnce = true;
+            }
            });
+           /*END TAP FUNCTION*/
           })  
         }
         //end cytoscape visualization code
