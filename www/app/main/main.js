@@ -68,7 +68,6 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
       });
   };
 
-
   $scope.sendLoc($scope.user);
 
   $scope.getProfile = function(username){
