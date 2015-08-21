@@ -261,11 +261,8 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
             if(nodes.connectedEdges().targets()[0]._private.data.id === nodes._private.data.id){
               return;
             }
-<<<<<<< HEAD
             $('.message').text("Send " + nodes._private.data.id + " a beer?").toggleClass('hidden');
-=======
-            $('.footer').text("Send " + nodes._private.data.id + " a beer?").toggleClass('hidden');
->>>>>>> working with clickable messages
+
             if(clickedOnce === true){
               clickedOnce = false;
               cy.elements().forEach(function(element){
