@@ -262,7 +262,6 @@ main.directive('cytoGraph', ['$window', '$timeout', 'cytoService',
               return;
             }
             $('.message').text("Send " + nodes._private.data.id + " a beer?").toggleClass('hidden');
-
             if(clickedOnce === true){
               clickedOnce = false;
               cy.elements().forEach(function(element){
