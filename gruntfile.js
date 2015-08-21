@@ -153,16 +153,16 @@ module.exports = function(grunt) {
     'cssmin'
   ]);
 
-  // grunt.registerTask('upload', function(n) {
-  //   if(grunt.option('git')) {
-  //     // add support for git push
-  //   } else {
-  //     grunt.task.run([ 'server-dev' ]);
-  //   }
-  // });
+  grunt.registerTask('upload', function(n) {
+    if(grunt.option('git')) {
+      // add support for git push
+    } else {
+      grunt.task.run([ 'server-dev' ]);
+    }
+  });
 
-  // grunt.registerTask('deploy', [
-  //     'build',
-  //     'upload'
-  // ]);
+  grunt.registerTask('deploy', [
+      'build',
+      'upload'
+  ]);
 };
