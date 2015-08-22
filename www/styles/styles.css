@@ -30,7 +30,8 @@ input {
   font-size: 3em;
   height: 100px;
   width: 100%;
-  bottom: 30px;
+  /*bottom: 30px;*/
+  bottom: 1em;
   /*background: white;*/
 }
 
@@ -44,21 +45,38 @@ input {
   width: 100%; 
 }
 */
-.friends, .message {
+
+.input-list {
+  margin-left: 1em;
+}
+.friends {
+  margin-top: 4px;
   display: inline-block;
   text-align: center;
-  float: left;
+  float: right;
+  padding: 5px;
+  margin-right: 1em;
+  margin-left: 1em;
+  background: #333;
+  color: white;
+  border-radius: 5px;
+}
+.message {
+  margin-top: 4px;
+  display: inline-block;
+  text-align: center;
+  float: right;
   padding: 5px;
   margin-left: 1em;
   background: #333;
   color: white;
   border-radius: 5px;
 }
-
 .search-friend {
   display: inline-block;
-  float: left;
-  padding: 5px;
+  float: right;
+  margin-top: 3px;
+  /*padding: 5px;*/
 }
 /*.message {
   display: inline-block;

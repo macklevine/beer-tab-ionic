@@ -14,8 +14,16 @@ main.controller('MainCtrl', function ($scope, $window, beerPmt, jwtHelper, AuthS
       })
   }
   $scope.printFriend = function(){
-    console.log($('.friend-input').val());
+    // console.log($('.friend-input').val());
+    var $textInput = $(".friend-input").val()
     $(".input-list").toggleClass('hidden');
+    if($textInput !== ""){
+      console.log('blank');
+      $scope.sendBeer($textInput);
+      $(".friend-input").val('');
+      // console.log($('.friend-input').val());
+    }
+    // $("#friend").toggleClass('hidden');
 
   }
  /* getTable.getTable($scope.user)
