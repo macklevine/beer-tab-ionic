@@ -12,7 +12,7 @@ var schema = mongoose.Schema ({
   username: { type: String, index: { unique: true } },
   password: String,
   network: { type: mongoose.Schema.Types.Mixed , default: {} },
-  profile: String,
+  profile: String, 
   latitude: Number,
   longitude: Number
 });
@@ -70,6 +70,12 @@ var user4 = new User({
   profile: 'jimmy.jpg'
 });
 
+var user5 = new User({
+  username: 'tom',
+  password: 'argleBargle5',
+  network: {}
+});
+
 user1.save( function(err, newUser) { 
   if (err) {console.log('user already in DB');} 
   else {console.log('successfully added');}
@@ -83,6 +89,10 @@ user3.save( function(err, newUser) {
   else {console.log('successfully added');}
 });
 user4.save( function(err, newUser) { 
+  if (err) {console.log('user already in DB');} 
+  else {console.log('successfully added');}
+});
+user5.save( function(err, newUser) { 
   if (err) {console.log('user already in DB');} 
   else {console.log('successfully added');}
 });
