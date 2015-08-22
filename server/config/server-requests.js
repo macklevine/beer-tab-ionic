@@ -248,6 +248,7 @@ exports.profile = function(req, res){
 
 exports.picExists = function(req, res){
   var username = req.body.username;
+  console.log(username + "should have our username in it");
   fs.exists('www/assets/profiles/' + username + '.jpg', function(exists){
     if (exists){
       res.json({verdict: "profile picture exists"});

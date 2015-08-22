@@ -141,16 +141,18 @@ angular.module('beer-tab.services', [])
   }
   return {profile: profile};
 })
-.factory('picExists', function($http){
+.factory('picExists', function ($http){
   var picExists = function(username){
-    $http({
+    return $http({
       method: 'POST',
       url: '/picexists',
       data: {username: username}
     }).then(function(resp){
-      return resp.data;
+      console.log(resp.data.verdict + " was the verdic.");
+      return resp.data.verdict;
     });
-  }
+  };
+  return {picExists: picExists};
 })
 
 
